@@ -14,9 +14,9 @@ app.directive('zipcodeAuto', function($http, $q){
 				if(scope.zip.length === 5){
 					 return $http({
 						url: "http://zip.elevenbasetwo.com?zip=" + scope.zip,
-	                	cache: false,
-	                	dataType: "json",
-	                	type: "GET"
+			                	cache: false,
+	                			dataType: "json",
+	                			type: "GET"
 					}).then(function(result){			
 						scope.city = result.data.city;
 						scope.state = result.data.state;	
