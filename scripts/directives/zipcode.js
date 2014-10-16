@@ -12,7 +12,7 @@ app.directive('zipcodeAuto', function($http, $q){
 		link: function(scope, element, attrs){
 			element.bind('keyup', function(){
 				if(scope.zip.length === 5){
-					 return $http({
+					return $http({
 						url: "http://zip.elevenbasetwo.com?zip=" + scope.zip,
 	                	cache: false,
 	                	dataType: "json",
