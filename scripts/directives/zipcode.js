@@ -11,8 +11,8 @@ app.directive('zipcodeAuto', function($http, $q){
 		},
 		link: function(scope, element, attrs){
 			element.bind('keyup', function(){
-				if(scope.zip.length === 5){
-					 return $http({
+				if(scope.zip && scope.zip.length === 5){
+					return $http({
 						url: "http://zip.elevenbasetwo.com?zip=" + scope.zip,
 	                			dataType: "json",
 	                			type: "GET"
@@ -21,7 +21,7 @@ app.directive('zipcodeAuto', function($http, $q){
 						scope.state = result.data.state;	
 					});
 				}
-				else if (scope.zip.length < 5 || scope.zip.length > 5 ) {
+				if (scope.zip && (scope.zip.length < 5 || scope.zip.length > 5)) {
 					scope.city = '';
 					scope.state = '';
 				}
