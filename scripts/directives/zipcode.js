@@ -13,12 +13,13 @@ app.directive('zipcodeAuto', function($http, $q){
 			element.bind('keyup', function(){
 				if(scope.zip && scope.zip.length === 5){
 					return $http({
-						url: "http://zip.elevenbasetwo.com?zip=" + scope.zip,
-	                			dataType: "json",
-	                			type: "GET"
-					}).then(function(result){			
-						scope.city = result.data.city;
-						scope.state = result.data.state;	
+						url: "http://api.zippopotam.us/us/" + scope.zip,
+	                	cache: false,
+	                	dataType: "json",
+	                	type: "GET"
+					}).then(function(result){		
+						scope.city = result.data.places[0]['place name'];
+						scope.state = result.data.places[0]['state abbreviation'];	
 					});
 				}
 				if (scope.zip && (scope.zip.length < 5 || scope.zip.length > 5)) {
